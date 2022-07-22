@@ -1,0 +1,421 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:professional_repository/ui/widgets/social_icons.dart';
+
+class AboutPlaceholder extends StatelessWidget {
+  const AboutPlaceholder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 300,
+      height: 300,
+      color: Theme.of(context).colorScheme.secondary,
+      child: const Center(
+        child: Text('About'),
+      ),
+    );
+  }
+}
+
+class NarrowLayout extends StatelessWidget {
+  const NarrowLayout({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class NavigationItem extends StatelessWidget {
+  final int index;
+  final String routeName;
+  final Function onPressed;
+  const NavigationItem(
+      {Key? key,
+      required this.index,
+      required this.routeName,
+      required this.onPressed})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return SizedBox(
+      width: size.width * 0.12,
+      height: 30,
+      child: ElevatedButton(
+        onPressed: () => onPressed(index),
+        // duration: const Duration(milliseconds: 500),
+        // curve: Curves.easeInOutSine),
+        style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all<Color>(Theme.of(context).primaryColor),
+        ),
+        child: Center(
+          child: Text(
+            routeName,
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium!
+                .copyWith(color: Theme.of(context).colorScheme.onSurface),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PostPreview extends StatelessWidget {
+  const PostPreview({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      height: 150,
+      child: Card(
+        color: Theme.of(context).primaryColor,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // top text
+              Row(
+                children: [
+                  Text(
+                    DateFormat.yMMMMd().format(DateTime.now()),
+                  ),
+                  const SizedBox(width: 20),
+                  const Text('5 min read'),
+                ],
+              ),
+              const SizedBox(height: 25),
+              // title text
+              Text(
+                'Build adaptive apps with Flutter',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20),
+              // short description text
+              Text(
+                  'Unlock the true potential of Flutter to build amazing apps regardless of the platorm.',
+                  style: Theme.of(context).textTheme.bodyMedium),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // double deviceWidth = MediaQuery.of(context).size.shortestSide;
+    return Scaffold(
+        body:
+            WideLayout() //deviceWidth >= 960 ? WideLayout() : const NarrowLayout(),
+        );
+  }
+}
+
+class PostsPreviewPage extends StatelessWidget {
+  const PostsPreviewPage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimationSlider(
+      child: ListView(
+        // physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        children: const [
+          PostPreview(),
+          SizedBox(height: 25),
+          PostPreview(),
+          SizedBox(height: 25),
+          PostPreview(),
+          SizedBox(height: 25),
+          PostPreview(),
+          SizedBox(height: 25),
+          PostPreview(),
+          SizedBox(height: 25),
+          PostPreview(),
+          SizedBox(height: 25),
+          PostPreview(),
+        ],
+      ),
+    );
+  }
+}
+
+class NavigationBarLarge extends StatelessWidget {
+  final PageController pageController;
+  const NavigationBarLarge({Key? key, required this.pageController}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Container(
+      color: Theme.of(context).colorScheme.onPrimary,
+      width: size.width * 0.20,
+      padding: const EdgeInsets.only(top: 30),
+      child: Column(
+        children: [
+          const CircleAvatar(
+            backgroundImage: AssetImage('assets/images/self_avatar.png'),
+            maxRadius: 50,
+          ),
+          const SizedBox(height: 20),
+          if (size.width >= 1140)
+            Column(
+              children: [
+                Text('Davi Holanda',
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        color: Colors.white54, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 10),
+                Text('Software Engineer',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall!
+                        .copyWith(color: Colors.white54)),
+              ],
+            ),
+          const SizedBox(height: 45),
+          NavigationItem(index: 0, routeName: 'Home', onPressed: _onPressed),
+          const SizedBox(height: 10),
+          NavigationItem(index: 1, routeName: 'About', onPressed: _onPressed),
+          const SizedBox(height: 10),
+          NavigationItem(index: 2, routeName: 'Posts', onPressed: _onPressed),
+          const SizedBox(height: 10),
+          NavigationItem(
+              index: 3, routeName: 'Experience', onPressed: _onPressed),
+          const Spacer(),
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child: SocialIcons(isHorizontal: true),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _onPressed(pageIndex) {
+    pageController.jumpToPage(pageIndex);
+    // animateToPage(pageIndex,
+    // duration: const Duration(milliseconds: 400), curve: Curves.linear);
+  }
+}
+
+class WideLayout extends StatelessWidget {
+  final pageController = PageController(initialPage: 0, keepPage: true);
+
+  WideLayout({super.key});
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Row(
+      children: [
+        if (size.width >= 960) NavigationBarLarge(pageController: pageController),
+        if (size.width < 960) NavigationBarMedium(pageController: pageController),
+        Expanded(
+          child: SingleChildScrollView(
+            physics: const ScrollPhysics(),
+            child: SizedBox(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                children: [
+                  Flexible(
+                    child: PageView(
+                      onPageChanged: (value) => print('value -> $value'),
+                      controller: pageController,
+                      children: List.unmodifiable(
+                        [
+                          const HomePage(),
+                          const AnimationSlider(child: AboutPlaceholder()),
+                          const PostsPreviewPage(),
+                          const AnimationSlider(
+                            child: Center(
+                              child: Text('Experience'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class NavigationBarMedium extends StatefulWidget {
+  const NavigationBarMedium({Key? key, required this.pageController})
+      : super(key: key);
+  final PageController pageController;
+
+  @override
+  State<NavigationBarMedium> createState() => _NavigationBarMediumState();
+}
+
+class _NavigationBarMediumState extends State<NavigationBarMedium> {
+  var _selectedIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return NavigationRail(
+      selectedIndex: _selectedIndex,
+      leading: Container(
+        margin: const EdgeInsets.only(bottom: 30, top: 20),
+        child: const CircleAvatar(
+          backgroundImage: AssetImage('assets/images/self_avatar.png'),
+          maxRadius: 25,
+        ),
+      ),
+      trailing: Container(
+          margin: EdgeInsets.only(top: size.height * 0.25),
+          child: const SocialIcons(isHorizontal: false)),
+      onDestinationSelected: (index) {
+        setState(() {
+          _selectedIndex = index;
+          widget.pageController.jumpToPage(index);
+        });
+      },
+      groupAlignment: -0.9,
+      destinations: const <NavigationRailDestination>[
+        NavigationRailDestination(
+          icon: Icon(Icons.house_outlined),
+          selectedIcon: Icon(Icons.house),
+          label: Text('Home'),
+        ),
+        NavigationRailDestination(
+          icon: Icon(Icons.person_outlined),
+          selectedIcon: Icon(Icons.person),
+          label: Text('About'),
+        ),
+        NavigationRailDestination(
+          icon: Icon(Icons.rss_feed),
+          selectedIcon: Icon(Icons.rss_feed),
+          label: Text('About'),
+        ),
+        NavigationRailDestination(
+          icon: Icon(Icons.code),
+          selectedIcon: Icon(Icons.code),
+          label: Text('About'),
+        ),
+      ],
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final nameStyleLarge = Theme.of(context).textTheme.displayLarge!.copyWith(
+        fontWeight: FontWeight.bold,
+        color: Theme.of(context).colorScheme.onSurface);
+    final nameStyleSmall = Theme.of(context).textTheme.displayMedium!.copyWith(
+        fontWeight: FontWeight.bold,
+        color: Theme.of(context).colorScheme.onSurface);
+
+    final descriptionLarge = GoogleFonts.inconsolata(
+        textStyle: Theme.of(context).textTheme.headlineMedium!);
+    final descriptionSmall = GoogleFonts.inconsolata(
+        textStyle: Theme.of(context).textTheme.headlineSmall!);
+    return AnimationSlider(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Hi, I\'m\nDavi Holanda',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.cormorantSc(
+                textStyle: size.width >= 960 ? nameStyleLarge : nameStyleSmall,
+              ),
+            ),
+            const SizedBox(height: 80),
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 50),
+              child: Text(
+                'A full-cycle SRE, passionate about solving real world problems with technology',
+                textAlign: TextAlign.center,
+                style: size.width >= 960 ? descriptionLarge : descriptionSmall,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AnimationSlider extends StatefulWidget {
+  const AnimationSlider({super.key, required this.child});
+  final Widget child;
+  @override
+  State<AnimationSlider> createState() => _AnimationSliderState();
+}
+
+class _AnimationSliderState extends State<AnimationSlider>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<Offset> animation;
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+        duration: const Duration(milliseconds: 700), vsync: this);
+
+    animation =
+        Tween<Offset>(begin: const Offset(1, 0), end: const Offset(0.0, 0.0))
+            .animate(
+      CurvedAnimation(parent: controller, curve: Curves.linear),
+    );
+    // animation = Tween<double>(begin: 0, end: 300).animate(controller);
+    // animation = CurveTween(curve: Curves.ease).animate(controller);
+    controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: animation, child: widget.child, //LogoWidget(),
+    );
+  }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return GrowTransition(
+  //     animation: animation,
+  //     child: const LogoWidget(),
+  //   );
+  // }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+}

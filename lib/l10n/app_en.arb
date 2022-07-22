@@ -1,0 +1,12 @@
+{
+  "appTitle": "Professional Repository",
+  "text__button_pushed_label": "You have pushed the button this many times:",
+  "text__home_hi": "Hi, I'm\nDavi Holanda",
+  "text__home_job_title": "Software Engineer",
+  "text__home_description": "A full-cycle SRE, passionate about solving real world problems with technology",
+  "text__about_me": "Hi! My name is Davi Holanda, I'm 27 years old and I'm from João Pessoa, Paraíba. I have a degree in Computer Science from UNIFG and I currently work as a Senior Software Engineer at Nubank.\n\nMy trajectory started a little different, I was studying environmental engineering at UFPB and in the fourth period, I took a class 'Introduction to Programming', it was love at first sight, I decided to change to Computer Science and this was one of the best decisions I've made, because I love solving real world problems with technology.\n\nI also worked as a Solutions Architect at Amazon Web Services (AWS), where I helped large companies to assemble robust solutions in the cloud following the pillars of a good architecture: resilient, secure, cost-effective and that performs well. During my time at AWS I challenged myself to get as many certifications as possible, and I got all the certifications in 10 months (at the time there were 12).\n\nFor the future I intend to continue exploring other areas such as information security, deepening my knowledge in data structure (I like to solve problems in leetcode from time to time), and also deepen knowledge in architecture of large-scale systems.\n\nIn my spare time I like to exercise, meditate, read books, watch series with my beautiful wife and spending time with my family.",
+  "text__about": "About Me",
+  "text__route_home": "Home",
+  "text__route_about": "About",
+  "text__route_posts": "Posts"
+}

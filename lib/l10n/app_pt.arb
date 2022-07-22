@@ -1,0 +1,12 @@
+{
+  "appTitle": "Repositório Profissional",
+  "text__button_pushed_label": "Quantas vezes voce apertou o botão:",
+  "text__home_hi": "Olá! Eu sou\nDavi Holanda",
+  "text__home_job_title": "Engenheiro de Software",
+  "text__home_description": "Um Engenheiro de Software full-cycle, apaixonado por resolver problemas reais utilizando tecnologia.",
+  "text__about_me": "Olá! Eu me chamo Davi Holanda, tenho 27 anos e sou de João Pessoa, na Paraíba. Sou formado em Ciências da Computação pela UNIFG e atualmente trabalho como Engenheiro de Software Senior no Nubank.\n\nMinha tragetória começou um pouco diferente, eu estava cursando engenharia ambiental na UFPB e no quarto período, tive aulas de 'Introdução a Programação', foi amor a primeira vista, decidi mudar de curso e essa foi uma das escolhas mais certeiras da minha vida, porque eu amo trabalhar com tecnologia.\n\nTrabalhei também como Arquiteto de soluções na Amazon Web Services (AWS), onde eu ajudava grandes empresas a montarem soluções robustas na nuvem seguindo os pilares de uma boa arquitetura: resiliente, segura, eficiente em custo e que performe bem. Durante meu tempo na AWS me desafiei a tirar o máximo de certificações possível, e consegui em 10 meses todas as certificações (na época eram 12).\n\nPara o futuro pretendo continuar me aventurar explorando outras áreas como segurança da informação, aprofundar meu conhecimento em estrutura de dados (gosto de resolver problemas no leetcode de vez enquando), e aprofundar também o conhecimento em arquitetura de sistemas em larga escala.\n\nNo meu tempo livre eu gosto de fazer exercícios, meditar, ler livros, assistir séries com minha linda mulher e passar tempo com a minha família.",
+  "text__about": "Sobre mim",
+  "text__route_home": "Início",
+  "text__route_about": "Sobre",
+  "text__route_posts": "Posts"
+}

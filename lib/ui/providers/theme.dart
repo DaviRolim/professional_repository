@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:material_color_utilities/material_color_utilities.dart';
 
 // Custom Colors
 const linkColor = CustomColor(
@@ -17,11 +16,9 @@ class CustomColor {
   final String name;
 
   final Color color;
-  final bool blend;
   const CustomColor({
     required this.name,
     required this.color,
-    this.blend = true,
   });
 
   Color value(ThemeProvider provider) {
@@ -79,11 +76,6 @@ class ThemeProvider extends InheritedWidget {
     );
   }
 
-  Color blend(Color targetColor) {
-    return Color(
-        Blend.harmonize(targetColor.value, settings.value.sourceColor.value));
-  }
-
   BottomAppBarTheme bottomAppBarTheme(ColorScheme colors) {
     return BottomAppBarTheme(
       color: colors.surface,
@@ -121,11 +113,7 @@ class ThemeProvider extends InheritedWidget {
   }
 
   Color custom(CustomColor custom) {
-    if (custom.blend) {
-      return blend(custom.color);
-    } else {
-      return custom.color;
-    }
+    return custom.color;
   }
 
   ThemeData dark([Color? targetColor]) {
@@ -183,9 +171,6 @@ class ThemeProvider extends InheritedWidget {
 
   Color source(Color? target) {
     Color source = settings.value.sourceColor;
-    if (target != null) {
-      source = blend(target);
-    }
     return source;
   }
 
